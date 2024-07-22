@@ -1,24 +1,22 @@
 // C++ code
-int dt, temp;
+int dt = 0;
 void setup()
 {
-  pinMode(A0, INPUT);
-  pinMode(2, OUTPUT),
+  pinMode(2, INPUT);
+  pinMode(4, OUTPUT);
   Serial.begin(9600);
 }
 
 void loop()
 {
-  dt = analogRead(A0);
-  temp = map( dt , 20, 358, -40, 125);
-  Serial.print("temp = ");
-  Serial.print(temp);
-   if(temp>40){
-    digitalWrite(2,HIGH);
+  dt = digitalRead(2);
+  Serial.print("motion = ");
+  Serial.println(dt);
+  if(dt == 1){
+    digitalWrite(4,HIGH);
   }else{
-    digitalWrite(2,LOW);
+    digitalWrite(4,LOW);
   }
- 
   
-  delay(1000);
+  delay(500);
 }
